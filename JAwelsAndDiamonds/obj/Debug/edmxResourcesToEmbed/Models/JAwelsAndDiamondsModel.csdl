@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JAwelsAndDiamondsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Jewels" Relationship="Self.FK__Jewel__BrandId__4222D4EF" FromRole="Brand" ToRole="Jewel" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="JewelId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Jewel" Relationship="Self.FK__Cart__JewelId__48CFD27E" FromRole="Cart" ToRole="Jewel" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Cart__UserId__47DBAE45" FromRole="Cart" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Jewels" Relationship="Self.FK__Jewel__CategoryI__412EB0B6" FromRole="Category" ToRole="Jewel" />
+  </EntityType>
+  <EntityType Name="Jewel">
+    <Key>
+      <PropertyRef Name="JewelId" />
+    </Key>
+    <Property Name="JewelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JewelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Brand" Relationship="Self.FK__Jewel__BrandId__4222D4EF" FromRole="Jewel" ToRole="Brand" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__JewelId__48CFD27E" FromRole="Jewel" ToRole="Cart" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Jewel__CategoryI__412EB0B6" FromRole="Jewel" ToRole="Category" />
+    <NavigationProperty Name="TransactionDetails" Relationship="Self.FK__Transacti__Jewel__5441852A" FromRole="Jewel" ToRole="TransactionDetail" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="PaymentMethodId" />
+    </Key>
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TransactionHeaders" Relationship="Self.FK__Transacti__Payme__5070F446" FromRole="PaymentMethod" ToRole="TransactionHeader" />
+  </EntityType>
+  <EntityType Name="TransactionDetail">
+    <Key>
+      <PropertyRef Name="TransactionDetailId" />
+    </Key>
+    <Property Name="TransactionDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionId" Type="Int32" Nullable="false" />
+    <Property Name="JewelId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Jewel" Relationship="Self.FK__Transacti__Jewel__5441852A" FromRole="TransactionDetail" ToRole="Jewel" />
+    <NavigationProperty Name="TransactionHeader" Relationship="Self.FK__Transacti__Trans__534D60F1" FromRole="TransactionDetail" ToRole="TransactionHeader" />
+  </EntityType>
+  <EntityType Name="TransactionHeader">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Transacti__Payme__5070F446" FromRole="TransactionHeader" ToRole="PaymentMethod" />
+    <NavigationProperty Name="TransactionDetails" Relationship="Self.FK__Transacti__Trans__534D60F1" FromRole="TransactionHeader" ToRole="TransactionDetail" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Transacti__UserI__4F7CD00D" FromRole="TransactionHeader" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__UserId__47DBAE45" FromRole="User" ToRole="Cart" />
+    <NavigationProperty Name="TransactionHeaders" Relationship="Self.FK__Transacti__UserI__4F7CD00D" FromRole="User" ToRole="TransactionHeader" />
+  </EntityType>
+  <EntityType Name="vw_CartDetails">
+    <Key>
+      <PropertyRef Name="CartId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="JewelId" />
+      <PropertyRef Name="JewelName" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="BrandName" />
+      <PropertyRef Name="Quantity" />
+    </Key>
+    <Property Name="CartId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JewelId" Type="Int32" Nullable="false" />
+    <Property Name="JewelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Subtotal" Type="Decimal" Precision="21" Scale="2" />
+  </EntityType>
+  <EntityType Name="vw_JewelDetails">
+    <Key>
+      <PropertyRef Name="JewelId" />
+      <PropertyRef Name="JewelName" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="ReleaseYear" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="BrandId" />
+      <PropertyRef Name="BrandName" />
+      <PropertyRef Name="CountryOfOrigin" />
+      <PropertyRef Name="Class" />
+    </Key>
+    <Property Name="JewelId" Type="Int32" Nullable="false" />
+    <Property Name="JewelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CountryOfOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_TransactionDetails">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="TransactionDate" />
+      <PropertyRef Name="PaymentMethodName" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="JewelId" />
+      <PropertyRef Name="JewelName" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="Quantity" />
+    </Key>
+    <Property Name="TransactionId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PaymentMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JewelId" Type="Int32" Nullable="false" />
+    <Property Name="JewelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Subtotal" Type="Decimal" Precision="21" Scale="2" />
+  </EntityType>
+  <Association Name="FK__Jewel__BrandId__4222D4EF">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="Jewel" Type="Self.Jewel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="Jewel">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__JewelId__48CFD27E">
+    <End Role="Jewel" Type="Self.Jewel" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jewel">
+        <PropertyRef Name="JewelId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="JewelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__UserId__47DBAE45">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Jewel__CategoryI__412EB0B6">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Jewel" Type="Self.Jewel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Jewel">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Jewel__5441852A">
+    <End Role="Jewel" Type="Self.Jewel" Multiplicity="1" />
+    <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jewel">
+        <PropertyRef Name="JewelId" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="JewelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Payme__5070F446">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="PaymentMethodId" />
+      </Principal>
+      <Dependent Role="TransactionHeader">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Trans__534D60F1">
+    <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1" />
+    <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionHeader">
+        <PropertyRef Name="TransactionId" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__UserI__4F7CD00D">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TransactionHeader">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JAwelsAndDiamondsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Jewels" EntityType="Self.Jewel" />
+    <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+    <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
+    <EntitySet Name="TransactionHeaders" EntityType="Self.TransactionHeader" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="vw_CartDetails" EntityType="Self.vw_CartDetails" />
+    <EntitySet Name="vw_JewelDetails" EntityType="Self.vw_JewelDetails" />
+    <EntitySet Name="vw_TransactionDetails" EntityType="Self.vw_TransactionDetails" />
+    <AssociationSet Name="FK__Jewel__BrandId__4222D4EF" Association="Self.FK__Jewel__BrandId__4222D4EF">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Jewel" EntitySet="Jewels" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__JewelId__48CFD27E" Association="Self.FK__Cart__JewelId__48CFD27E">
+      <End Role="Jewel" EntitySet="Jewels" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__UserId__47DBAE45" Association="Self.FK__Cart__UserId__47DBAE45">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Jewel__CategoryI__412EB0B6" Association="Self.FK__Jewel__CategoryI__412EB0B6">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Jewel" EntitySet="Jewels" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Jewel__5441852A" Association="Self.FK__Transacti__Jewel__5441852A">
+      <End Role="Jewel" EntitySet="Jewels" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Payme__5070F446" Association="Self.FK__Transacti__Payme__5070F446">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Trans__534D60F1" Association="Self.FK__Transacti__Trans__534D60F1">
+      <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__UserI__4F7CD00D" Association="Self.FK__Transacti__UserI__4F7CD00D">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+    </AssociationSet>
+    <FunctionImport Name="sp_CheckoutCart" ReturnType="Collection(Int32)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetSuccessfulTransactions" ReturnType="Collection(JAwelsAndDiamondsModel.sp_GetSuccessfulTransactions_Result)" />
+    <FunctionImport Name="sp_GetUnfinishedOrders" ReturnType="Collection(JAwelsAndDiamondsModel.sp_GetUnfinishedOrders_Result)" />
+    <FunctionImport Name="sp_GetUserCart" ReturnType="Collection(JAwelsAndDiamondsModel.sp_GetUserCart_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateTransactionStatus" ReturnType="Collection(Int32)">
+      <Parameter Name="TransactionId" Mode="In" Type="Int32" />
+      <Parameter Name="NewStatus" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_GetSuccessfulTransactions_Result">
+    <Property Type="Int32" Name="TransactionId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="TransactionDate" Nullable="false" />
+    <Property Type="String" Name="PaymentMethodName" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUnfinishedOrders_Result">
+    <Property Type="Int32" Name="TransactionId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="TransactionDate" Nullable="false" />
+    <Property Type="String" Name="PaymentMethodName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_GetUserCart_Result">
+    <Property Type="Int32" Name="CartId" Nullable="false" />
+    <Property Type="Int32" Name="JewelId" Nullable="false" />
+    <Property Type="String" Name="JewelName" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="BrandName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="21" Scale="2" />
+  </ComplexType>
+</Schema>

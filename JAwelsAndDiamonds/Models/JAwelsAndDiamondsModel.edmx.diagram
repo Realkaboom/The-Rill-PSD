@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdff493f5d97496b9ac8514bb9c11bfb" Name="Diagram1">
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.Brand" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.Cart" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.Category" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.Jewel" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.PaymentMethod" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.TransactionDetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.TransactionHeader" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.User" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.vw_CartDetails" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.vw_JewelDetails" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="JAwelsAndDiamondsModel.vw_TransactionDetails" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Jewel__BrandId__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Cart__JewelId__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Cart__UserId__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Jewel__CategoryI__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Transacti__Jewel__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Transacti__Payme__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Transacti__Trans__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="JAwelsAndDiamondsModel.FK__Transacti__UserI__4F7CD00D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

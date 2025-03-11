@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="_Layout.Master.cs" Inherits="JAwelsAndDiamonds.Views.Shared._Layout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>JAwels & Diamonds</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <header class="py-3 mb-4 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <a href="~/Views/Home/Index.aspx" class="d-flex align-items-center mb-2 mb-md-0 text-decoration-none">
+                            <img src="~/Assets/images/logo.png" alt="JAwels & Diamonds" class="logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="navigation-container">
+                            <asp:ContentPlaceHolder ID="NavigationContent" runat="server">
+                                <!-- Navigation will be loaded here based on user role -->
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="alert-container">
+                    <asp:ContentPlaceHolder ID="AlertContent" runat="server">
+                        <!-- Alerts will be displayed here -->
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="content-container">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        <!-- Main content will be loaded here -->
+                    </asp:ContentPlaceHolder>
+                </div>
+            </main>
+
+            <footer class="py-3 my-4 border-top">
+                <p class="text-center text-muted">© 2024 JAwels & Diamonds</p>
+            </footer>
+        </div>
+    </form>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server">
+        <!-- Additional scripts will be loaded here -->
+    </asp:ContentPlaceHolder>
+</body>
+</html>
