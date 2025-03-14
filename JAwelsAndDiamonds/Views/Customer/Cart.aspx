@@ -29,9 +29,9 @@
                     <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
                         <p>Your cart is empty. <a href="~/Views/Home/Index.aspx" runat="server">Continue shopping</a></p>
                     </asp:Panel>
-                    
+
                     <asp:Panel ID="pnlCartItems" runat="server">
-                        <asp:GridView ID="gvCartItems" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" OnRowCommand="gvCartItems_RowCommand">
+                        <asp:GridView ID="gvCartItems" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" OnRowCommand="gvCartItems_RowCommand" DataKeyNames="JewelId">
                             <Columns>
                                 <asp:BoundField DataField="JewelId" HeaderText="Jewel ID" />
                                 <asp:BoundField DataField="JewelName" HeaderText="Jewel Name" />
@@ -57,7 +57,8 @@
                                 <asp:Button ID="btnClearCart" runat="server" Text="Clear Cart" CssClass="btn btn-outline-danger" OnClick="btnClearCart_Click" OnClientClick="return confirm('Are you sure you want to clear your cart?');" />
                             </div>
                             <div class="text-end">
-                                <h4>Total: <asp:Label ID="lblTotal" runat="server" Text="$0.00"></asp:Label></h4>
+                                <h4>Total:
+                                    <asp:Label ID="lblTotal" runat="server" Text="$0.00"></asp:Label></h4>
                             </div>
                         </div>
 

@@ -307,9 +307,9 @@
     <Content Include="Views\Auth\Register.aspx" />
     <Content Include="Views\Customer\Cart.aspx" />
     <Content Include="Views\Customer\MyOrders.aspx" />
-    <Content Include="Views\Customer\TransactionDetail.ascx" />
+    <Content Include="Views\Customer\TransactionDetail.aspx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Home\JewelDetail.ascx" />
+    <Content Include="Views\Home\JewelDetail.aspx" />
     <Content Include="Views\Profile\Profile.aspx" />
     <Content Include="Views\Shared\_AdminNavigation.ascx" />
     <Content Include="Views\Shared\_CustomerNavigation.ascx" />
@@ -599,12 +599,12 @@
     <Compile Include="Views\Customer\MyOrders.aspx.designer.cs">
       <DependentUpon>MyOrders.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Customer\TransactionDetail.ascx.cs">
-      <DependentUpon>TransactionDetail.ascx</DependentUpon>
+    <Compile Include="Views\Customer\TransactionDetail.aspx.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Customer\TransactionDetail.ascx.designer.cs">
-      <DependentUpon>TransactionDetail.ascx</DependentUpon>
+    <Compile Include="Views\Customer\TransactionDetail.aspx.designer.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -613,12 +613,12 @@
     <Compile Include="Views\Home\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\JewelDetail.ascx.cs">
-      <DependentUpon>JewelDetail.ascx</DependentUpon>
+    <Compile Include="Views\Home\JewelDetail.aspx.cs">
+      <DependentUpon>JewelDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Home\JewelDetail.ascx.designer.cs">
-      <DependentUpon>JewelDetail.ascx</DependentUpon>
+    <Compile Include="Views\Home\JewelDetail.aspx.designer.cs">
+      <DependentUpon>JewelDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

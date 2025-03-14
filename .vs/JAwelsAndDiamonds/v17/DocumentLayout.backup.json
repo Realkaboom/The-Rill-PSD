@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "E:\\JAwelsAndDiamonds\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|e:\\jawelsanddiamonds\\jawelsanddiamonds\\views\\home\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|e:\\jawelsanddiamonds\\jawelsanddiamonds\\views\\customer\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\views\\customer\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|E:\\JAwelsAndDiamonds\\jawelsanddiamonds\\views\\home\\jeweldetail.aspx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\views\\home\\jeweldetail.aspx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|E:\\JAwelsAndDiamonds\\jawelsanddiamonds\\views\\home\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\views\\home\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|e:\\jawelsanddiamonds\\jawelsanddiamonds\\views\\home\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|E:\\JAwelsAndDiamonds\\jawelsanddiamonds\\views\\home\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\views\\home\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|e:\\jawelsanddiamonds\\jawelsanddiamonds\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|E:\\JAwelsAndDiamonds\\jawelsanddiamonds\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|e:\\jawelsanddiamonds\\jawelsanddiamonds\\views\\home\\jeweldetail.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
-      "RelativeMoniker": "D:0:0:{822D1EA3-DD68-4DB5-84AE-CD76DB785C6E}|JAwelsAndDiamonds\\JAwelsAndDiamonds.csproj|solutionrelative:jawelsanddiamonds\\views\\home\\jeweldetail.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,32 +39,42 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.aspx.cs",
-              "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
-              "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
-              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs*",
-              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs*",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T10:43:02.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JewelDetail.ascx",
-              "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\JewelDetail.ascx",
-              "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Home\\JewelDetail.ascx",
-              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\JewelDetail.ascx",
-              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\JewelDetail.ascx",
+              "Title": "Cart.aspx",
+              "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Customer\\Cart.aspx",
+              "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Customer\\Cart.aspx",
+              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Customer\\Cart.aspx",
+              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Customer\\Cart.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2025-03-11T10:43:00.265Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-03-11T13:27:20.767Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Index.aspx.cs",
+              "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
+              "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
+              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
+              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T10:43:02.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JewelDetail.aspx",
+              "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\JewelDetail.aspx",
+              "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Home\\JewelDetail.aspx",
+              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\JewelDetail.aspx",
+              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\JewelDetail.aspx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-03-11T10:43:00.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Web.config",
               "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Web.config",
               "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Web.config",
@@ -73,16 +87,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Index.aspx",
               "DocumentMoniker": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx",
               "RelativeDocumentMoniker": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx",
-              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx*",
-              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx*",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "ToolTip": "E:\\JAwelsAndDiamonds\\JAwelsAndDiamonds\\Views\\Home\\Index.aspx",
+              "RelativeToolTip": "JAwelsAndDiamonds\\Views\\Home\\Index.aspx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-03-11T10:27:14.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T10:27:14.83Z"
             }
           ]
         }
