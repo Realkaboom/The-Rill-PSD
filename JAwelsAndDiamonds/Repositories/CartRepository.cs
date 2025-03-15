@@ -16,13 +16,27 @@ namespace JAwelsAndDiamonds.Repositories
 
         public IEnumerable<dynamic> GetCartByUserId(int userId)
         {
-            // Using the vw_CartDetails view to get detailed information
-            var cartDetails = _context.Database.SqlQuery<vw_CartDetails>(
-                "SELECT * FROM vw_CartDetails WHERE UserId = @userId",
-                new SqlParameter("@userId", userId)
-            ).ToList();
+            try
+            {
+                // Pendekatan alternatif: Membuat query dengan SELECT explisit untuk memastikan semua field tersedia
+                var cartItems = _context.Database.SqlQuery<CartItem>(
+                    @"SELECT c.CartId, c.UserId, c.JewelId, j.JewelName, j.Price, b.BrandName, 
+                     c.Quantity, (j.Price * c.Quantity) AS Subtotal
+                     FROM Cart c
+                     INNER JOIN Jewel j ON c.JewelId = j.JewelId
+                     INNER JOIN Brand b ON j.BrandId = b.BrandId
+                     WHERE c.UserId = @userId",
+                    new SqlParameter("@userId", userId)
+                ).ToList();
 
-            return cartDetails;
+                return cartItems;
+            }
+            catch (Exception ex)
+            {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in GetCartByUserId: {ex.Message}");
+                return new List<CartItem>();
+            }
         }
 
         public Cart GetCartItemByUserAndJewel(int userId, int jewelId)
@@ -34,33 +48,21 @@ namespace JAwelsAndDiamonds.Repositories
         {
             try
             {
-                // Execute the stored procedure to get user cart with total
-                var totalParameter = new SqlParameter
-                {
-                    ParameterName = "@TotalPrice",
-                    SqlDbType = SqlDbType.Decimal,
-                    Direction = ParameterDirection.Output,
-                    Precision = 18,
-                    Scale = 2
-                };
+                // Gunakan query SQL langsung untuk menghitung total
+                var result = _context.Database.SqlQuery<decimal>(
+                    @"SELECT ISNULL(SUM(j.Price * c.Quantity), 0)
+                     FROM Cart c
+                     INNER JOIN Jewel j ON c.JewelId = j.JewelId
+                     WHERE c.UserId = @userId",
+                    new SqlParameter("@userId", userId)
+                ).FirstOrDefault();
 
-                // Perhatikan bahwa stored procedure hanya membutuhkan satu parameter: @UserId
-                _context.Database.ExecuteSqlCommand(
-                    "EXEC sp_GetUserCart @UserId, @TotalPrice OUTPUT",
-                    new SqlParameter("@UserId", userId),
-                    totalParameter
-                );
-
-                // Get the result from the output parameter
-                if (totalParameter.Value != DBNull.Value)
-                {
-                    return (decimal)totalParameter.Value;
-                }
-
-                return 0;
+                return result;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in GetCartTotal: {ex.Message}");
                 return 0;
             }
         }
@@ -82,10 +84,31 @@ namespace JAwelsAndDiamonds.Repositories
                 _context.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in ClearCartByUserId: {ex.Message}");
                 return false;
             }
         }
+
+        public bool HasItems(int userId)
+        {
+            // Periksa apakah ada item di keranjang untuk user ini
+            return _dbSet.Any(c => c.UserId == userId);
+        }
+    }
+
+    // DTO untuk hasil query cart
+    public class CartItem
+    {
+        public int CartId { get; set; }
+        public int UserId { get; set; }
+        public int JewelId { get; set; }
+        public string JewelName { get; set; }
+        public decimal Price { get; set; }
+        public string BrandName { get; set; }
+        public int Quantity { get; set; }
+        public decimal Subtotal { get; set; }
     }
 }

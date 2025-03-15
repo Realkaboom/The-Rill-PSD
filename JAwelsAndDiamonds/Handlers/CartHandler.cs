@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JAwelsAndDiamonds.Factories;
 using JAwelsAndDiamonds.Models;
 using JAwelsAndDiamonds.Repositories;
@@ -38,7 +39,7 @@ namespace JAwelsAndDiamonds.Handlers
         /// <returns>IEnumerable of cart items with details</returns>
         public IEnumerable<dynamic> GetUserCart(int userId)
         {
-            return _cartRepository.GetCartByUserId(userId);
+            return _cartRepository.GetCartByUserId(userId).ToList();
         }
 
         /// <summary>
@@ -79,8 +80,10 @@ namespace JAwelsAndDiamonds.Handlers
                 _cartRepository.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in AddToCart: {ex.Message}");
                 return false;
             }
         }
@@ -112,8 +115,10 @@ namespace JAwelsAndDiamonds.Handlers
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in UpdateCartItem: {ex.Message}");
                 return false;
             }
         }
@@ -139,8 +144,10 @@ namespace JAwelsAndDiamonds.Handlers
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in DeleteCartItem: {ex.Message}");
                 return false;
             }
         }
@@ -162,7 +169,44 @@ namespace JAwelsAndDiamonds.Handlers
         /// <returns>The total price</returns>
         public decimal CalculateCartTotal(int userId)
         {
-            return _cartRepository.GetCartTotal(userId);
+            try
+            {
+                // Get cart items
+                var cartItems = GetUserCart(userId);
+
+                // Jika tidak ada item, kembalikan 0
+                if (cartItems == null || !cartItems.Any())
+                    return 0;
+
+                // Hitung total secara manual
+                decimal total = 0;
+                foreach (dynamic item in cartItems)
+                {
+                    if (item != null && item.Subtotal != null)
+                    {
+                        total += (decimal)item.Subtotal;
+                    }
+                }
+
+                return total;
+            }
+            catch (Exception ex)
+            {
+                // Log error jika diperlukan
+                System.Diagnostics.Debug.WriteLine($"Error in CalculateCartTotal: {ex.Message}");
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the user's cart has items
+        /// </summary>
+        /// <param name="userId">User ID</param>
+        /// <returns>True if the cart has items, otherwise false</returns>
+        public bool HasItems(int userId)
+        {
+            var cartItems = GetUserCart(userId);
+            return cartItems != null && cartItems.Any();
         }
     }
 }

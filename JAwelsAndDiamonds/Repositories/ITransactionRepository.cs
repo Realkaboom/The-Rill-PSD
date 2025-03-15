@@ -46,5 +46,11 @@ namespace JAwelsAndDiamonds.Repositories
         /// <param name="paymentMethodId">Payment method ID</param>
         /// <returns>The transaction ID if successful, otherwise -1</returns>
         int CheckoutCart(int userId, int paymentMethodId);
+
+        /// <summary>
+        /// Adds a TransactionDetail to the database
+        /// </summary>
+        /// <param name="detail">TransactionDetail object to add</param>
+        void AddDetail(TransactionDetail detail);
     }
 }

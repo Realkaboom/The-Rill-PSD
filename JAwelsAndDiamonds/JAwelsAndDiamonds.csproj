@@ -227,6 +227,7 @@
     <Content Include="App_Data\JAwelsAndDiamonds_log.ldf">
       <DependentUpon>JAwelsAndDiamonds.mdf</DependentUpon>
     </Content>
+    <Content Include="Assets\images\logo.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -657,7 +658,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

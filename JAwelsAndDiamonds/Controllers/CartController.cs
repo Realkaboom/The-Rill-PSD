@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using JAwelsAndDiamonds.Handlers;
 using JAwelsAndDiamonds.Utils;
@@ -155,7 +156,36 @@ namespace JAwelsAndDiamonds.Controllers
         {
             // Get the current user ID from session
             int userId = (int)SessionUtil.GetSession(_page.Session, "UserId");
-            return _cartHandler.CalculateCartTotal(userId);
+
+            // Perbaikan: Periksa apakah ada item di keranjang dan hitung total
+            var cartItems = _cartHandler.GetUserCart(userId);
+            if (cartItems == null || !cartItems.Any())
+                return 0;
+
+            // Menghitung total dari semua item di keranjang
+            decimal total = 0;
+            foreach (var item in cartItems)
+            {
+                total += item.Subtotal;
+            }
+
+            return total;
+        }
+
+        /// <summary>
+        /// Checks if the cart has items
+        /// </summary>
+        /// <returns>True if the cart has items, otherwise false</returns>
+        public bool HasItems()
+        {
+            // Get the current user ID from session
+            int userId = (int)SessionUtil.GetSession(_page.Session, "UserId");
+
+            // Mendapatkan item keranjang
+            var cartItems = _cartHandler.GetUserCart(userId);
+
+            // Memeriksa apakah ada item dalam keranjang
+            return cartItems != null && cartItems.Any();
         }
     }
 }

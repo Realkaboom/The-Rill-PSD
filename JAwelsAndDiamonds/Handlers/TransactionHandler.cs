@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JAwelsAndDiamonds.Factories;
 using JAwelsAndDiamonds.Models;
 using JAwelsAndDiamonds.Repositories;
@@ -24,10 +25,10 @@ namespace JAwelsAndDiamonds.Handlers
         /// <param name="paymentMethodRepository">Payment method repository</param>
         /// <param name="transactionFactory">Transaction factory</param>
         public TransactionHandler(
-            ITransactionRepository transactionRepository,
-            ICartRepository cartRepository,
-            IPaymentMethodRepository paymentMethodRepository,
-            TransactionFactory transactionFactory)
+        ITransactionRepository transactionRepository,
+        ICartRepository cartRepository,
+        IPaymentMethodRepository paymentMethodRepository,
+        TransactionFactory transactionFactory)
         {
             _transactionRepository = transactionRepository;
             _cartRepository = cartRepository;
@@ -47,20 +48,31 @@ namespace JAwelsAndDiamonds.Handlers
             {
                 // Check if the payment method exists
                 if (_paymentMethodRepository.GetById(paymentMethodId) == null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"CheckoutCart: Payment method {paymentMethodId} not found");
                     return -1;
+                }
 
-                // Check if the cart is empty
-                var cartItems = _cartRepository.GetCartByUserId(userId);
-                if (cartItems == null || !cartItems.GetEnumerator().MoveNext())
+                // Debug info
+                System.Diagnostics.Debug.WriteLine($"CheckoutCart: Processing for userId={userId}, paymentMethodId={paymentMethodId}");
+
+                // Periksa secara langsung di database jika cart memiliki item
+                bool hasItems = _cartRepository.HasItems(userId);
+                System.Diagnostics.Debug.WriteLine($"CheckoutCart: HasItems={hasItems}");
+
+                if (!hasItems)
+                {
+                    System.Diagnostics.Debug.WriteLine("CheckoutCart: Cart is empty");
                     return -1;
+                }
 
-                // Create the transaction using stored procedure
-                int transactionId = _transactionRepository.CheckoutCart(userId, paymentMethodId);
-
-                return transactionId;
+                // Use the repository's method to checkout the cart
+                return _transactionRepository.CheckoutCart(userId, paymentMethodId);
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"CheckoutCart Exception: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 return -1;
             }
         }

@@ -33,5 +33,12 @@ namespace JAwelsAndDiamonds.Repositories
         /// <param name="userId">User ID</param>
         /// <returns>True if successful, otherwise false</returns>
         bool ClearCartByUserId(int userId);
+
+        /// <summary>
+        /// Checks if the user's cart has items
+        /// </summary>
+        /// <param name="userId">User ID</param>
+        /// <returns>True if the cart has items, otherwise false</returns>
+        bool HasItems(int userId);
     }
 }

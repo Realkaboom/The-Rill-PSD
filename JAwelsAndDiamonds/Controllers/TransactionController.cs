@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using JAwelsAndDiamonds.Handlers;
 using JAwelsAndDiamonds.Models;
@@ -168,25 +169,52 @@ namespace JAwelsAndDiamonds.Controllers
         {
             errorMessage = "";
 
-            // Validate payment method ID
-            if (paymentMethodId <= 0)
+            try
             {
-                errorMessage = "Please select a payment method.";
+                // Validate payment method ID
+                if (paymentMethodId <= 0)
+                {
+                    errorMessage = "Please select a payment method.";
+                    return -1;
+                }
+
+                // Get the current user ID from session
+                int userId = (int)SessionUtil.GetSession(_page.Session, "UserId");
+
+                // Debug log
+                System.Diagnostics.Debug.WriteLine($"Attempting checkout: UserId={userId}, PaymentMethodId={paymentMethodId}");
+
+                // Bypass HasItems check temporarily:
+                // Direct database check to make sure we have items
+                var context = new JAwelsAndDiamondsEntities();
+                bool hasItems = context.Carts.Any(c => c.UserId == userId);
+
+                if (!hasItems)
+                {
+                    errorMessage = "Failed to checkout the cart. Make sure the cart is not empty.";
+                    System.Diagnostics.Debug.WriteLine("Checkout failed: Cart is empty");
+                    return -1;
+                }
+
+                // Checkout the cart
+                int transactionId = _transactionHandler.CheckoutCart(userId, paymentMethodId);
+
+                if (transactionId == -1)
+                {
+                    errorMessage = "Failed to checkout the cart. Technical issue occurred.";
+                    System.Diagnostics.Debug.WriteLine("Checkout failed: Transaction ID is -1");
+                    return -1;
+                }
+
+                System.Diagnostics.Debug.WriteLine($"Checkout successful: TransactionId={transactionId}");
+                return transactionId;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = "An error occurred during checkout: " + ex.Message;
+                System.Diagnostics.Debug.WriteLine("Exception during checkout: " + ex.ToString());
                 return -1;
             }
-
-            // Get the current user ID from session
-            int userId = (int)SessionUtil.GetSession(_page.Session, "UserId");
-
-            // Checkout the cart
-            int transactionId = _transactionHandler.CheckoutCart(userId, paymentMethodId);
-            if (transactionId == -1)
-            {
-                errorMessage = "Failed to checkout the cart. Make sure the cart is not empty.";
-                return -1;
-            }
-
-            return transactionId;
         }
     }
 }
